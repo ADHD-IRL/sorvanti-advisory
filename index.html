@@ -1,0 +1,720 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sorvanti Advisory</title>
+<meta name="description" content="Sorvanti Advisory: strategic AI planning for leadership teams. You know AI matters. We help you decide where to apply it, what to do first, and what it will take.">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Montserrat:wght@600&display=swap">
+<style>
+/* Layout: the leadership briefing. Pages read like a board memo: a cover-sheet hero, numbered questions,
+   a portfolio matrix as the one bold visual. Palette is drawn from the Sorvanti mark: forest, leaf, gold. */
+:root {
+  --paper: #F3F5F1;
+  --sheet: #FCFDFB;
+  --ink: #12261E;
+  --muted: #56655D;
+  --rule: #D5DCD4;
+  --forest: #14523A;
+  --leaf: #2E8B57;
+  --leaf-soft: #DCEBDF;
+  --gold: #A87A06;
+  --gold-fill: #E8B923;
+  --gold-soft: #F6EBC6;
+  --display: "Spectral", "Iowan Old Style", Georgia, serif;
+  --body: "Instrument Sans", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+  --logo: "Montserrat", "Segoe UI", system-ui, sans-serif;
+  --step-0: clamp(1rem, 0.97rem + 0.14vw, 1.08rem);
+  --step-1: clamp(1.15rem, 1.07rem + 0.36vw, 1.36rem);
+  --step-2: clamp(1.4rem, 1.24rem + 0.7vw, 1.85rem);
+  --step-3: clamp(1.9rem, 1.55rem + 1.5vw, 2.9rem);
+  --step-4: clamp(2.5rem, 1.8rem + 3.2vw, 4.8rem);
+  --space-s: clamp(0.9rem, 0.8rem + 0.4vw, 1.15rem);
+  --space-m: clamp(1.4rem, 1.2rem + 0.9vw, 2rem);
+  --space-l: clamp(2rem, 1.6rem + 1.8vw, 3.2rem);
+  --space-xl: clamp(3.5rem, 2.6rem + 4vw, 7rem);
+  --gutter: clamp(16px, 4vw, 40px);
+  --wrap: 1160px;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0C1511; --sheet: #121E19; --ink: #E6ECE8; --muted: #93A49A; --rule: #24332C;
+    --forest: #7CC8A0; --leaf: #5FBF8A; --leaf-soft: #17382A; --gold: #E8B923; --gold-fill: #E8B923; --gold-soft: #3A2F0E;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0C1511; --sheet: #121E19; --ink: #E6ECE8; --muted: #93A49A; --rule: #24332C;
+  --forest: #7CC8A0; --leaf: #5FBF8A; --leaf-soft: #17382A; --gold: #E8B923; --gold-fill: #E8B923; --gold-soft: #3A2F0E;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--body); font-size: var(--step-0); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+.wrap { max-width: var(--wrap); margin: 0 auto; padding-inline: var(--gutter); }
+section[id] { scroll-margin-top: 72px; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--leaf); outline-offset: 3px; border-radius: 2px; }
+h1, h2, h3 { font-family: var(--display); font-weight: 400; margin: 0; text-wrap: balance; letter-spacing: -0.01em; }
+p { margin: 0; }
+.label { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.13em; text-transform: uppercase; color: var(--muted); }
+em.g { font-style: italic; color: var(--forest); }
+
+/* Header */
+.site-head { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: color-mix(in srgb, var(--paper) 90%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--rule); }
+.site-head .wrap { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-block: 12px; }
+.wordmark { display: inline-flex; align-items: center; gap: 0.75em; text-decoration: none; white-space: nowrap; }
+.wordmark .logo { display: inline-flex; align-items: center; gap: 0.62em; }
+.wordmark img { width: 38px; height: 38px; max-width: none; }
+.wordmark .logotype { font-family: var(--logo); font-weight: 600; font-size: 1.25rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink); line-height: 1; }
+.wordmark .practice { font-family: var(--display); font-style: italic; font-size: 1.15rem; color: var(--forest); padding-left: 0.75em; border-left: 1px solid var(--rule); line-height: 1.2; }
+.site-head nav { order: 1; }
+.head-right { order: 2; display: flex; align-items: center; gap: 10px; }
+nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 26px; font-size: 0.93rem; }
+nav a { text-decoration: none; color: var(--muted); }
+nav a:hover { color: var(--ink); }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; cursor: pointer; font: 500 0.95rem var(--body); padding: 12px 20px; border-radius: 2px; border: 1px solid var(--forest); background: var(--forest); color: var(--paper); }
+.btn:hover { background: transparent; color: var(--forest); }
+.btn.ghost { background: transparent; color: var(--ink); border-color: var(--ink); }
+.btn.ghost:hover { background: var(--ink); color: var(--paper); }
+.head-cta { padding: 8px 14px; font-size: 0.88rem; }
+.menu-btn { display: none; width: 44px; height: 44px; padding: 0; border: 1px solid var(--rule); border-radius: 2px; background: transparent; color: var(--ink); cursor: pointer; place-items: center; }
+.menu-btn .bars, .menu-btn .bars::before, .menu-btn .bars::after { display: block; width: 18px; height: 1.5px; background: currentColor; position: relative; transition: transform .25s ease, background .25s ease; }
+.menu-btn .bars::before, .menu-btn .bars::after { content: ""; position: absolute; left: 0; }
+.menu-btn .bars::before { top: -6px; } .menu-btn .bars::after { top: 6px; }
+.menu-btn[aria-expanded="true"] .bars { background: transparent; }
+.menu-btn[aria-expanded="true"] .bars::before { transform: translateY(6px) rotate(45deg); }
+.menu-btn[aria-expanded="true"] .bars::after { transform: translateY(-6px) rotate(-45deg); }
+@media (max-width: 920px) {
+  .site-head .wrap { flex-wrap: wrap; row-gap: 0; }
+  .menu-btn { display: grid; }
+  .site-head nav { order: 3; flex-basis: 100%; display: grid; grid-template-rows: 0fr; transition: grid-template-rows .3s ease; }
+  nav > ul { overflow: hidden; min-height: 0; flex-direction: column; gap: 0; }
+  nav:not(.open) > ul { visibility: hidden; transition: visibility 0s .3s; }
+  nav.open { grid-template-rows: 1fr; }
+  nav.open > ul { padding-block: 8px 6px; }
+  nav li { border-top: 1px solid var(--rule); }
+  nav a { display: block; padding-block: 14px; font-size: 1.05rem; color: var(--ink); }
+}
+@media (max-width: 560px) { .wordmark .practice { display: none; } }
+@media (max-width: 420px) { .head-cta { display: none; } }
+
+/* Hero: statement + cover sheet */
+.hero { padding-block: var(--space-xl) var(--space-l); }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--space-l); align-items: center; }
+.hero .label { display: block; margin-bottom: 24px; }
+.hero h1 { font-size: var(--step-4); line-height: 1.04; font-weight: 300; }
+.hero h1 strong { font-weight: 500; color: var(--forest); }
+.hero-lede { margin-top: 26px; font-size: var(--step-1); line-height: 1.5; color: var(--muted); max-width: 54ch; }
+.hero-actions { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 12px; }
+.cover { background: var(--sheet); border: 1px solid var(--rule); padding: clamp(22px, 3vw, 34px); box-shadow: 10px 10px 0 -1px var(--leaf-soft), 10px 10px 0 0 var(--rule); transform: rotate(0.6deg); }
+.cover .top { display: flex; justify-content: space-between; gap: 12px; border-bottom: 2px solid var(--forest); padding-bottom: 12px; }
+.cover h2 { font-size: 1.7rem; line-height: 1.15; margin-top: 18px; }
+.cover .meta { margin-top: 12px; display: grid; grid-template-columns: auto minmax(0,1fr); gap: 2px 14px; font-size: 0.86rem; color: var(--muted); }
+.cover .meta dt { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; padding-top: 2px; }
+.cover .meta dd { margin: 0; }
+.cover ol { margin: 20px 0 0; padding: 0; list-style: none; counter-reset: c; display: grid; }
+.cover li { counter-increment: c; display: grid; grid-template-columns: 2rem minmax(0,1fr) auto; gap: 8px; padding: 9px 0; border-top: 1px solid var(--rule); font-size: 0.93rem; align-items: baseline; }
+.cover li::before { content: counter(c) "."; font-family: var(--mono); font-size: 0.78rem; color: var(--gold); }
+.cover li span { font-family: var(--mono); font-size: 0.72rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+@media (max-width: 920px) { .hero-grid { grid-template-columns: 1fr; } .cover { transform: none; max-width: 520px; } }
+
+/* Section heads */
+section.block { padding-block: var(--space-xl); border-top: 1px solid var(--rule); }
+.sec-head { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--space-l); margin-bottom: var(--space-l); align-items: end; }
+.sec-head .label { display: block; margin-bottom: 14px; }
+.sec-head h2 { font-size: var(--step-3); line-height: 1.08; }
+.sec-head .intro { color: var(--muted); font-size: var(--step-1); line-height: 1.5; max-width: 54ch; }
+@media (max-width: 860px) { .sec-head { grid-template-columns: 1fr; gap: 16px; } }
+
+/* The gap */
+.gap { background: var(--forest); color: var(--paper); padding-block: var(--space-xl); }
+.gap .label { color: color-mix(in srgb, var(--paper) 65%, transparent); }
+.gap blockquote { margin: 18px 0 0; font-family: var(--display); font-weight: 300; font-size: clamp(1.8rem, 1.3rem + 2.2vw, 3.1rem); line-height: 1.15; max-width: 24ch; }
+.gap blockquote em { color: var(--gold-fill); font-style: italic; }
+.symptoms { margin-top: var(--space-l); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); gap: 1px; background: color-mix(in srgb, var(--paper) 22%, transparent); border: 1px solid color-mix(in srgb, var(--paper) 22%, transparent); }
+.symptoms p { background: var(--forest); padding: 20px 20px 22px; color: color-mix(in srgb, var(--paper) 85%, transparent); font-size: 0.97rem; }
+.symptoms p b { display: block; font-family: var(--display); font-weight: 400; font-size: 1.25rem; color: var(--paper); margin-bottom: 6px; line-height: 1.25; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .gap, :root:not([data-theme="light"]) .symptoms p { background: var(--sheet); color: var(--ink); } :root:not([data-theme="light"]) .gap .label, :root:not([data-theme="light"]) .symptoms p { color: var(--muted); } :root:not([data-theme="light"]) .symptoms p b { color: var(--ink); } :root:not([data-theme="light"]) .symptoms { background: var(--rule); border-color: var(--rule); } }
+:root[data-theme="dark"] .gap, :root[data-theme="dark"] .symptoms p { background: var(--sheet); color: var(--ink); }
+:root[data-theme="dark"] .gap .label, :root[data-theme="dark"] .symptoms p { color: var(--muted); }
+:root[data-theme="dark"] .symptoms p b { color: var(--ink); }
+:root[data-theme="dark"] .symptoms { background: var(--rule); border-color: var(--rule); }
+
+/* Five questions */
+.questions { list-style: none; margin: 0; padding: 0; counter-reset: q; }
+.questions li { counter-increment: q; display: grid; grid-template-columns: 5rem minmax(0, 5fr) minmax(0, 6fr); gap: var(--space-m); padding-block: var(--space-m); border-top: 1px solid var(--rule); align-items: baseline; }
+.questions li::before { content: counter(q, decimal-leading-zero); font-family: var(--display); font-weight: 300; font-size: 2.6rem; line-height: 1; color: var(--gold); }
+.questions h3 { font-size: var(--step-2); line-height: 1.2; }
+.questions .ans { color: var(--muted); display: grid; gap: 10px; }
+.questions .ans .out { color: var(--ink); font-size: 0.93rem; }
+.questions .ans .out span { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--forest); margin-right: 8px; }
+@media (max-width: 860px) { .questions li { grid-template-columns: 3.4rem minmax(0, 1fr); } .questions li::before { font-size: 2rem; } .questions .ans { grid-column: 2; } }
+
+/* Matrix */
+.matrix-wrap { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: var(--space-l); align-items: start; }
+.matrix { background: var(--sheet); border: 1px solid var(--rule); padding: 14px; }
+.matrix svg { display: block; width: 100%; height: auto; max-width: 100%; }
+.matrix .q-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; fill: var(--muted); }
+.matrix .q-label.hot { fill: var(--forest); font-weight: 500; }
+.matrix .axis { font-family: var(--body); font-size: 12px; fill: var(--muted); }
+.matrix .gridline { stroke: var(--rule); stroke-width: 1; }
+.matrix .divider { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 4 4; }
+.matrix .hotzone { fill: var(--leaf-soft); }
+.matrix .pt { cursor: pointer; }
+.matrix .pt circle { stroke-width: 2; transition: r .2s ease; }
+.matrix .pt.low circle { fill: var(--leaf); stroke: var(--sheet); }
+.matrix .pt.high circle { fill: var(--sheet); stroke: var(--gold); stroke-width: 3; }
+.matrix .pt text { font-family: var(--body); font-size: 12px; fill: var(--ink); }
+.matrix .pt.sel circle { r: 11; }
+.matrix .pt.sel text { font-weight: 600; }
+.matrix .pt:focus { outline: none; }
+.matrix .pt:focus-visible circle { stroke: var(--forest); stroke-width: 4; }
+.legend { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 12px; font-size: 0.85rem; color: var(--muted); }
+.legend i { display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-right: 7px; vertical-align: -1px; }
+.legend .l1 { background: var(--leaf); }
+.legend .l2 { border: 3px solid var(--gold); }
+.detail { border-top: 2px solid var(--forest); padding-top: 16px; display: grid; gap: 12px; }
+.detail h3 { font-size: var(--step-2); line-height: 1.15; }
+.detail .scores { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 8px; }
+.detail .scores div { background: var(--sheet); border: 1px solid var(--rule); padding: 10px 12px; }
+.detail .scores b { display: block; font-family: var(--display); font-weight: 400; font-size: 1.5rem; font-variant-numeric: tabular-nums; }
+.detail .scores span { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.detail .verdict { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--forest); }
+.detail p { color: var(--muted); }
+.detail .human { padding: 12px 14px; background: var(--gold-soft); font-size: 0.93rem; color: var(--ink); }
+.chips { display: none; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.chips button { font: 500 0.82rem var(--body); padding: 8px 11px; min-height: 36px; border: 1px solid var(--rule); background: var(--sheet); color: var(--ink); border-radius: 2px; cursor: pointer; }
+.chips button[aria-pressed="true"] { border-color: var(--forest); background: var(--leaf-soft); }
+@media (max-width: 640px) { .matrix .pt text { display: none; } .matrix .q-label { font-size: 15px; } .matrix .axis { font-size: 16px; } .matrix .pt circle { r: 11; } .matrix .pt.sel circle { r: 15; } .chips { display: flex; } }
+.filter { margin-top: var(--space-l); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr)); gap: 0; border-top: 1px solid var(--ink); }
+.filter div { padding: 16px 16px 18px 0; }
+.filter div + div { padding-left: 16px; border-left: 1px solid var(--rule); }
+.filter b { display: block; font-family: var(--display); font-weight: 500; font-size: 1.15rem; margin-bottom: 4px; }
+.filter p { font-size: 0.92rem; color: var(--muted); }
+@media (max-width: 960px) { .matrix-wrap { grid-template-columns: 1fr; } }
+@media (max-width: 640px) { .filter div + div { border-left: 0; padding-left: 0; border-top: 1px solid var(--rule); } }
+
+/* Model: what we need / what you get */
+.model { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); gap: var(--space-m); }
+.model .col { background: var(--sheet); border: 1px solid var(--rule); padding: var(--space-m); }
+.model .col h3 { font-size: 1.5rem; margin-bottom: 14px; }
+.model .col.give { border-top: 3px solid var(--gold-fill); }
+.model .col.get { border-top: 3px solid var(--leaf); }
+.model ul { list-style: none; margin: 0; padding: 0; display: grid; }
+.model li { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 16px; padding: 11px 0; border-top: 1px solid var(--rule); font-size: 0.97rem; }
+.model li span { font-family: var(--mono); font-size: 0.76rem; color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.model .total { margin-top: 12px; font-family: var(--display); font-size: 1.2rem; }
+.not-us { margin-top: var(--space-m); padding: 18px 22px; border: 1px dashed var(--rule); color: var(--muted); }
+.not-us b { color: var(--ink); font-weight: 600; }
+
+/* Engagements */
+.engagements { display: grid; gap: 0; border-top: 1px solid var(--ink); }
+.eng { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 5fr) minmax(0, 3fr); gap: var(--space-m); padding-block: var(--space-m); border-bottom: 1px solid var(--rule); }
+.eng h3 { font-size: 1.6rem; line-height: 1.15; }
+.eng .for { margin-top: 8px; color: var(--muted); font-size: 0.95rem; }
+.eng .what { color: var(--muted); }
+.eng .what ul { margin: 10px 0 0; padding-left: 1.1em; color: var(--ink); font-size: 0.95rem; }
+.eng .facts { display: grid; gap: 8px; align-content: start; }
+.eng .facts div { display: flex; justify-content: space-between; gap: 12px; border-bottom: 1px dotted var(--rule); padding-bottom: 6px; font-size: 0.9rem; }
+.eng .facts dt { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.eng .facts dd { margin: 0; text-align: right; }
+.eng.feature { background: var(--leaf-soft); padding-inline: var(--space-s); margin-inline: calc(var(--space-s) * -1); }
+.eng .tag { display: inline-block; margin-bottom: 10px; font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--forest); border: 1px solid var(--forest); padding: 3px 8px; }
+@media (max-width: 900px) { .eng { grid-template-columns: 1fr; gap: 14px; } }
+
+/* Diagnostic */
+.diag { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--space-l); align-items: start; }
+.diag fieldset { border: 0; margin: 0; padding: 0 0 18px; }
+.diag fieldset + fieldset { border-top: 1px solid var(--rule); padding-top: 18px; }
+.diag legend { font-family: var(--display); font-size: 1.25rem; line-height: 1.3; margin-bottom: 12px; padding: 0; }
+.opts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.opts label { position: relative; display: block; cursor: pointer; }
+.opts input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.opts span { display: block; height: 100%; padding: 11px 12px; border: 1px solid var(--rule); background: var(--sheet); font-size: 0.88rem; line-height: 1.35; transition: border-color .15s ease, background .15s ease; }
+.opts label:hover span { border-color: var(--muted); }
+.opts input:checked + span { border-color: var(--forest); background: var(--leaf-soft); box-shadow: inset 0 0 0 1px var(--forest); }
+.opts input:focus-visible + span { outline: 2px solid var(--leaf); outline-offset: 2px; }
+@media (max-width: 600px) { .opts { grid-template-columns: 1fr; } }
+.result { position: sticky; top: 90px; background: var(--sheet); border: 1px solid var(--rule); padding: var(--space-m); display: grid; gap: 14px; }
+.progress { display: flex; gap: 4px; }
+.progress i { flex: 1; height: 4px; background: var(--rule); }
+.progress i.on { background: var(--leaf); }
+.result h3 { font-size: 1.7rem; line-height: 1.15; }
+.result p { color: var(--muted); }
+.result .why { font-size: 0.92rem; color: var(--ink); padding-top: 12px; border-top: 1px solid var(--rule); }
+.result .also { font-size: 0.9rem; padding: 10px 12px; background: var(--gold-soft); color: var(--ink); }
+@media (max-width: 900px) { .diag { grid-template-columns: 1fr; } .result { position: static; } }
+
+/* Principles strip */
+.stance { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); gap: var(--space-m); }
+.stance div { border-top: 2px solid var(--leaf); padding-top: 14px; }
+.stance b { display: block; font-family: var(--display); font-weight: 500; font-size: 1.3rem; line-height: 1.25; margin-bottom: 8px; }
+.stance p { color: var(--muted); font-size: 0.97rem; }
+.sister { margin-top: var(--space-l); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px 32px; padding: var(--space-m); background: var(--sheet); border: 1px solid var(--rule); }
+.sister p { max-width: 62ch; color: var(--muted); }
+.sister p b { color: var(--ink); font-weight: 600; }
+
+/* Contact */
+.contact-grid { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: var(--space-l); align-items: start; }
+.contact h2 { font-size: var(--step-3); line-height: 1.08; }
+.contact .lede { margin-top: 18px; color: var(--muted); font-size: var(--step-1); max-width: 42ch; }
+form { display: grid; gap: 16px; }
+.field { display: grid; gap: 6px; }
+.field label { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.field input, .field select, .field textarea { font: 400 1rem var(--body); color: var(--ink); background: var(--sheet); border: 1px solid var(--rule); border-radius: 2px; padding: 11px 12px; width: 100%; }
+.field textarea { min-height: 110px; resize: vertical; }
+.field input:focus, .field select:focus, .field textarea:focus { outline: 2px solid var(--leaf); outline-offset: 0; border-color: transparent; }
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-msg { font-size: 0.92rem; color: var(--gold); }
+@media (max-width: 860px) { .contact-grid { grid-template-columns: 1fr; } }
+@media (max-width: 520px) { .two { grid-template-columns: 1fr; } }
+
+footer { padding-block: 40px 56px; border-top: 1px solid var(--rule); }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; align-items: center; }
+footer p { color: var(--muted); font-size: 0.9rem; }
+</style>
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="wordmark" href="#top" aria-label="Sorvanti Advisory, home"><span class="logo"><img src="assets/sorvanti-mark.png" alt="" width="38" height="38"><span class="logotype">Sorvanti</span></span><span class="practice">Advisory</span></a>
+    <div class="head-right">
+      <a class="btn head-cta" href="#contact">Book a briefing</a>
+      <button type="button" class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu"><span class="bars"></span></button>
+    </div>
+    <nav aria-label="Primary" id="site-nav">
+      <ul>
+        <li><a href="#questions">Five questions</a></li>
+        <li><a href="#filter">Where AI belongs</a></li>
+        <li><a href="#engagements">Engagements</a></li>
+        <li><a href="#diagnostic">Where to start</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="label">Strategic AI planning for leadership teams</span>
+        <h1>You know AI matters. <strong>The hard part is knowing where to apply it.</strong></h1>
+        <p class="hero-lede">Sorvanti Advisory works as your outsourced AI planning office. We do the analysis, make the hard calls with you, and hand your teams a plan they can execute. You don't need to reorganize to work with us.</p>
+        <div class="hero-actions">
+          <a class="btn" href="#contact">Book a leadership briefing</a>
+          <a class="btn ghost" href="#diagnostic">Find your starting point</a>
+        </div>
+      </div>
+
+      <aside class="cover" aria-label="Example deliverable: AI Application Brief">
+        <div class="top"><span class="label">Sorvanti Advisory</span><span class="label">Confidential</span></div>
+        <h2>AI Application Brief</h2>
+        <dl class="meta">
+          <dt>For</dt><dd>Executive leadership team</dd>
+          <dt>Scope</dt><dd>Enterprise, all functions</dd>
+          <dt>Horizon</dt><dd>18 months</dd>
+        </dl>
+        <ol>
+          <li>Where AI belongs in this business<span>p. 3</span></li>
+          <li>Ranked opportunity portfolio<span>p. 7</span></li>
+          <li>Decisions that stay human<span>p. 12</span></li>
+          <li>What it will take<span>p. 15</span></li>
+          <li>First 90 days<span>p. 19</span></li>
+          <li>How we'll know it's working<span>p. 22</span></li>
+        </ol>
+      </aside>
+    </div>
+  </section>
+
+  <!-- THE GAP -->
+  <section class="gap">
+    <div class="wrap">
+      <span class="label">The application gap</span>
+      <blockquote>Most leadership teams aren't short of AI conviction. They're short of <em>a plan that connects it to their business.</em></blockquote>
+      <div class="symptoms">
+        <p><b>A long list, no ranking.</b>Dozens of use-case ideas and no defensible way to choose between them.</p>
+        <p><b>Vendors set the agenda.</b>Your roadmap is whatever the last good pitch proposed.</p>
+        <p><b>Pilots with no path.</b>Experiments that work but never become how the business runs.</p>
+        <p><b>The board is asking.</b>"What's our AI strategy?" and the honest answer is a slide of tools.</p>
+        <p><b>Nobody owns it.</b>Planning is split between IT, innovation and the business, so nothing gets decided.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FIVE QUESTIONS -->
+  <section class="block" id="questions">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><span class="label">What we answer</span><h2>Five questions every leadership team should be able to answer</h2></div>
+        <p class="intro">"How do we apply AI?" is really five questions. Each engagement answers them for your business, in writing, with the reasoning shown.</p>
+      </div>
+      <ol class="questions">
+        <li>
+          <h3>Where does AI belong in our business, and where doesn't it?</h3>
+          <div class="ans"><p>We look at the work first: where your people spend effort, where decisions are made, and where judgment creates value. AI belongs where it widens what people can do without hollowing out the expertise you depend on.</p><p class="out"><span>You get</span>A map of AI opportunity across functions, including what to leave alone.</p></div>
+        </li>
+        <li>
+          <h3>What should we do first, and why?</h3>
+          <div class="ans"><p>Every opportunity is scored on value, readiness, and risk, then sequenced so early work builds the data, skills, and confidence that later work needs.</p><p class="out"><span>You get</span>A ranked portfolio and a sequenced roadmap.</p></div>
+        </li>
+        <li>
+          <h3>Which decisions must stay human?</h3>
+          <div class="ans"><p>Some decisions are not delegable: framing the problem, accepting risk, setting priorities, signing off. We name them explicitly so AI is designed around them, not over them.</p><p class="out"><span>You get</span>A decision-rights view for each priority area.</p></div>
+        </li>
+        <li>
+          <h3>What will it take?</h3>
+          <div class="ans"><p>People, data, technology, money, and governance. We size each one honestly, including the organizational change that most AI plans leave out.</p><p class="out"><span>You get</span>An investment case and capability plan.</p></div>
+        </li>
+        <li>
+          <h3>How will we know it's working?</h3>
+          <div class="ans"><p>Adoption counts aren't outcomes. We define measures tied to the work itself: decision quality, cycle time, capacity returned to people, and risk.</p><p class="out"><span>You get</span>A measurement framework and review cadence.</p></div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- APPLICATION FILTER / MATRIX -->
+  <section class="block" id="filter">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><span class="label">The application filter</span><h2>How we decide where AI belongs</h2></div>
+        <p class="intro">Every opportunity goes through the same filter. The result is a portfolio your leadership team can defend, not a list of ideas. Select a point to see the reasoning.</p>
+      </div>
+
+      <div class="matrix-wrap">
+        <div>
+          <div class="matrix"><svg id="matrix" viewBox="0 0 640 460" role="group" aria-label="Opportunity portfolio: business value against readiness"></svg></div>
+          <div class="chips" id="chips" aria-label="Opportunities"></div>
+          <div class="legend"><span><i class="l1"></i>AI can lead, people review</span><span><i class="l2"></i>High judgment at stake: people decide, AI assists</span></div>
+          <p class="label" style="margin-top:10px">Illustrative portfolio for a regional insurer</p>
+        </div>
+        <div class="detail" id="detail" aria-live="polite"></div>
+      </div>
+
+      <div class="filter">
+        <div><b>Value</b><p>How much does this work matter to customers, revenue, cost, or risk?</p></div>
+        <div><b>Readiness</b><p>Are the data, process, and people ready, or does groundwork come first?</p></div>
+        <div><b>Judgment at stake</b><p>Is human judgment the source of value here? If so, AI assists and people decide.</p></div>
+        <div><b>Risk</b><p>What happens when it's wrong, and how quickly would anyone notice?</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODEL -->
+  <section class="block" id="model">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><span class="label">How we work</span><h2>Senior thinking, light footprint</h2></div>
+        <p class="intro">We take the planning off your plate. Your leaders spend a few focused hours with us; we do the research, analysis, and writing in between.</p>
+      </div>
+      <div class="model">
+        <div class="col give">
+          <h3>What we need from you</h3>
+          <ul>
+            <li>Kickoff with the executive sponsor<span>90 min</span></li>
+            <li>Interviews with function leaders<span>45 min each</span></li>
+            <li>Access to existing plans, data inventories, and AI activity<span>documents</span></li>
+            <li>Two leadership working sessions<span>2 × 2 h</span></li>
+            <li>Final review with the executive team<span>90 min</span></li>
+          </ul>
+          <p class="total">About 8 hours of leadership time over four weeks</p>
+        </div>
+        <div class="col get">
+          <h3>What you get</h3>
+          <ul>
+            <li>A written answer to the five questions<span>brief</span></li>
+            <li>A ranked, sequenced opportunity portfolio<span>portfolio</span></li>
+            <li>A 90-day plan with owners and milestones<span>plan</span></li>
+            <li>A board-ready summary of your AI strategy<span>10 pages</span></li>
+            <li>Criteria for judging every future AI proposal<span>checklist</span></li>
+          </ul>
+          <p class="total">A plan your own teams, or any partner, can execute</p>
+        </div>
+      </div>
+      <p class="not-us"><b>We don't implement, resell, or take referral fees.</b> We have no platform to promote, so our only interest is the right answer for your business.</p>
+    </div>
+  </section>
+
+  <!-- ENGAGEMENTS -->
+  <section class="block" id="engagements">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><span class="label">Engagements</span><h2>Fixed scope, fixed timeline</h2></div>
+        <p class="intro">Each engagement ends with something you can act on. Most clients start with a Brief, then keep us on as their planning office.</p>
+      </div>
+      <div class="engagements">
+        <article class="eng">
+          <div><h3>Leadership Briefing</h3><p class="for">For teams that need a shared, realistic view of AI before deciding anything.</p></div>
+          <div class="what"><p>A working session that separates what AI can do for your business today from the noise.</p><ul><li>Pre-read tailored to your industry</li><li>Facilitated session with your executive team</li><li>Short written summary of agreed priorities</li></ul></div>
+          <dl class="facts"><div><dt>Duration</dt><dd>1 day</dd></div><div><dt>Your time</dt><dd>Half day</dd></div><div><dt>Output</dt><dd>Shared view</dd></div></dl>
+        </article>
+        <article class="eng feature">
+          <div><span class="tag">Most common start</span><h3>AI Application Brief</h3><p class="for">For leaders who know AI matters and need to decide where to apply it.</p></div>
+          <div class="what"><p>The five questions answered for your business, with a ranked portfolio and a first-90-days plan.</p><ul><li>Opportunity map across functions</li><li>Ranked portfolio through the application filter</li><li>Decisions that stay human</li><li>90-day plan with owners</li></ul></div>
+          <dl class="facts"><div><dt>Duration</dt><dd>4 weeks</dd></div><div><dt>Your time</dt><dd>~8 hours</dd></div><div><dt>Output</dt><dd>Written brief</dd></div></dl>
+        </article>
+        <article class="eng">
+          <div><h3>AI Strategy &amp; Roadmap</h3><p class="for">For organizations ready to commit investment and need a plan the board can approve.</p></div>
+          <div class="what"><p>Everything in the Brief, extended into an 18-month roadmap with an investment case, operating-model implications, and governance posture.</p><ul><li>Sequenced roadmap and investment case</li><li>Workforce and skills implications</li><li>Governance and risk posture</li><li>Board paper</li></ul></div>
+          <dl class="facts"><div><dt>Duration</dt><dd>8 weeks</dd></div><div><dt>Your time</dt><dd>~16 hours</dd></div><div><dt>Output</dt><dd>Strategy + board paper</dd></div></dl>
+        </article>
+        <article class="eng">
+          <div><h3>Fractional AI Planning Office</h3><p class="for">For organizations that want senior AI planning without hiring a full team.</p></div>
+          <div class="what"><p>We act as your standing AI planning function: keeping the roadmap current, reviewing proposals, and preparing leadership for decisions.</p><ul><li>Quarterly roadmap refresh</li><li>Independent review of vendor and internal proposals</li><li>Board and executive preparation</li><li>Portfolio tracking against measures</li></ul></div>
+          <dl class="facts"><div><dt>Duration</dt><dd>Ongoing</dd></div><div><dt>Your time</dt><dd>~2 h / month</dd></div><div><dt>Output</dt><dd>Living roadmap</dd></div></dl>
+        </article>
+        <article class="eng">
+          <div><h3>Proposal &amp; Vendor Review</h3><p class="for">For a specific decision: a platform, a vendor contract, or a large internal proposal.</p></div>
+          <div class="what"><p>An independent assessment of whether the proposal fits your strategy, what it will really take, and what to ask before you sign.</p><ul><li>Fit against your priorities</li><li>Hidden costs and dependencies</li><li>Questions for the vendor</li></ul></div>
+          <dl class="facts"><div><dt>Duration</dt><dd>2 weeks</dd></div><div><dt>Your time</dt><dd>~3 hours</dd></div><div><dt>Output</dt><dd>Recommendation</dd></div></dl>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIAGNOSTIC -->
+  <section class="block" id="diagnostic">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><span class="label">Where to start</span><h2>Five questions to find your starting point</h2></div>
+        <p class="intro">Answer honestly. The recommendation updates as you go. Nothing is sent anywhere.</p>
+      </div>
+      <div class="diag">
+        <form id="diag-form" aria-label="Starting point diagnostic"></form>
+        <aside class="result" aria-live="polite">
+          <div class="progress" id="progress"></div>
+          <span class="label" id="r-count">0 of 5 answered</span>
+          <h3 id="r-title">Your recommended starting point</h3>
+          <p id="r-body">Answer the five questions and we'll suggest the engagement that fits where you are today: a Leadership Briefing, an AI Application Brief, a Strategy &amp; Roadmap, or a Fractional AI Planning Office.</p>
+          <p class="why" id="r-why" hidden></p>
+          <p class="also" id="r-also" hidden></p>
+          <a class="btn" href="#contact" id="r-cta" hidden>Talk to us about this</a>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- STANCE -->
+  <section class="block" id="stance">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><span class="label">What guides our advice</span><h2>Our point of view</h2></div>
+        <p class="intro">The same convictions behind all of Sorvanti's work, applied at the planning stage, where they're cheapest to get right.</p>
+      </div>
+      <div class="stance">
+        <div><b>Start with the work, not the technology.</b><p>We choose where AI goes by looking at what your people are trying to accomplish. Tools come last.</p></div>
+        <div><b>Increase meaningful thinking.</b><p>The goal isn't fewer people thinking. It's more of your organization's attention on the work that needs judgment.</p></div>
+        <div><b>Name what stays human.</b><p>A plan that doesn't say which decisions remain with people will quietly hand them away.</p></div>
+        <div><b>Plan past the pilot.</b><p>Every recommendation includes the path to normal operations: ownership, skills, governance, and measures.</p></div>
+      </div>
+      <div class="sister">
+        <p><b>Need hands-on help once the plan is set?</b> Sorvanti's transformation practice redesigns workflows, implements systems, and stays until the new way of working is normal.</p>
+        <a class="btn ghost" href="https://adhd-irl.github.io/sorvanti/">Visit Sorvanti Transformation</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="block contact" id="contact">
+    <div class="wrap contact-grid">
+      <div>
+        <span class="label">Book a briefing</span>
+        <h2 style="margin-top:14px">Bring us the question. <em class="g">We'll bring back a plan.</em></h2>
+        <p class="lede">Tell us where your leadership team is today. We'll suggest the right first step, usually within one conversation.</p>
+      </div>
+      <form id="contact-form" novalidate>
+        <div class="two">
+          <div class="field"><label for="f-name">Name</label><input id="f-name" name="name" autocomplete="name" required></div>
+          <div class="field"><label for="f-role">Role</label><input id="f-role" name="role" autocomplete="organization-title"></div>
+        </div>
+        <div class="two">
+          <div class="field"><label for="f-org">Organization</label><input id="f-org" name="org" autocomplete="organization"></div>
+          <div class="field"><label for="f-email">Work email</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
+        </div>
+        <div class="field">
+          <label for="f-interest">Interested in</label>
+          <select id="f-interest" name="interest">
+            <option>Leadership Briefing</option>
+            <option selected>AI Application Brief</option>
+            <option>AI Strategy &amp; Roadmap</option>
+            <option>Fractional AI Planning Office</option>
+            <option>Proposal &amp; Vendor Review</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+        <div class="field"><label for="f-msg">What decision is your leadership team facing?</label><textarea id="f-msg" name="message"></textarea></div>
+        <div><button class="btn" type="submit">Send</button></div>
+        <p class="form-msg" id="form-msg" role="status" hidden></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="wordmark" href="#top" aria-label="Sorvanti Advisory, back to top"><span class="logo"><img src="assets/sorvanti-mark.png" alt="" width="38" height="38"><span class="logotype">Sorvanti</span></span><span class="practice">Advisory</span></a>
+    <p>Strategic AI planning for leadership teams.</p>
+    <p>© 2026 Sorvanti</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  // Mobile menu
+  var menuBtn = document.getElementById("menu-btn"), nav = document.getElementById("site-nav");
+  function setMenu(open) { nav.classList.toggle("open", open); menuBtn.setAttribute("aria-expanded", open); menuBtn.setAttribute("aria-label", open ? "Close menu" : "Open menu"); }
+  menuBtn.addEventListener("click", function () { setMenu(!nav.classList.contains("open")); });
+  nav.addEventListener("click", function (e) { if (e.target.closest("a")) setMenu(false); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") setMenu(false); });
+  window.matchMedia("(min-width: 921px)").addEventListener("change", function (m) { if (m.matches) setMenu(false); });
+
+  // Opportunity portfolio (illustrative). value and readiness on a 0–10 scale.
+  var opps = [
+    { n: "Claims intake triage", v: 7.2, r: 8.2, j: "low", risk: "Low", why: "High volume, structured inputs, and clear rules. Errors surface quickly at the next step.", human: "Adjusters own every coverage decision; AI only routes and summarizes." },
+    { n: "Underwriting memos", v: 8.6, r: 6.6, j: "high", risk: "Medium", why: "Drafting and evidence-gathering eat underwriter time. AI assembles the file; the underwriter forms the view.", human: "Risk acceptance and pricing stay with the underwriter, with evidence linked for audit." },
+    { n: "Customer letters", v: 5.4, r: 8.8, j: "low", risk: "Low", why: "Templates and tone guidelines already exist. A fast efficiency gain with little downside.", human: "Complaint and hardship letters are reviewed by a person before sending." },
+    { n: "Fraud patterns", v: 8.2, r: 3.8, j: "high", risk: "High", why: "Large value, but claims data is fragmented across three systems. Data groundwork comes first.", human: "Investigators decide whether to pursue; AI flags patterns, never accusations." },
+    { n: "Board reporting", v: 6.1, r: 7.0, j: "high", risk: "Medium", why: "AI can synthesize performance data quickly, but the narrative is a leadership judgment.", human: "Executives write the interpretation and own what the board is told." },
+    { n: "Pricing strategy", v: 9.1, r: 2.8, j: "high", risk: "High", why: "The most valuable decision in the portfolio, and the least ready. Models can inform; regulators and leadership must trust the reasoning.", human: "Pricing decisions remain with the pricing committee." },
+    { n: "Policy Q&A", v: 3.9, r: 9.1, j: "low", risk: "Low", why: "Internal questions about policies and procedures. Easy to deploy, modest value.", human: "Answers cite the source document so staff can check." },
+    { n: "Workforce planning", v: 5.2, r: 3.2, j: "high", risk: "High", why: "Sensitive and data-poor. Revisit once HR data is consolidated.", human: "People decisions stay with managers and HR." },
+    { n: "Contract review", v: 6.6, r: 5.4, j: "high", risk: "Medium", why: "Reinsurance and vendor contracts follow patterns AI can check, but exceptions carry real exposure.", human: "Legal signs off; AI produces a clause-by-clause comparison." }
+  ];
+  function verdict(o) {
+    if (o.v >= 5 && o.r >= 5) return "Start now";
+    if (o.v >= 5) return "Build readiness first";
+    if (o.r >= 5) return "Quick efficiency";
+    return "Not yet";
+  }
+  var svg = document.getElementById("matrix"), NS = "http://www.w3.org/2000/svg";
+  var L = 70, R = 610, T = 30, B = 400;
+  function x(r) { return L + (r / 10) * (R - L); }
+  function y(v) { return B - (v / 10) * (B - T); }
+  function el(tag, attrs, text) { var e = document.createElementNS(NS, tag); for (var k in attrs) e.setAttribute(k, attrs[k]); if (text != null) e.textContent = text; svg.appendChild(e); return e; }
+  el("rect", { x: x(5), y: T, width: R - x(5), height: y(5) - T, class: "hotzone" });
+  for (var t = 0; t <= 10; t += 2.5) {
+    el("line", { x1: x(t), y1: T, x2: x(t), y2: B, class: "gridline" });
+    el("line", { x1: L, y1: y(t), x2: R, y2: y(t), class: "gridline" });
+  }
+  el("line", { x1: x(5), y1: T, x2: x(5), y2: B, class: "divider" });
+  el("line", { x1: L, y1: y(5), x2: R, y2: y(5), class: "divider" });
+  el("text", { x: R - 8, y: T + 18, "text-anchor": "end", class: "q-label hot" }, "Start now");
+  el("text", { x: L + 8, y: T + 18, class: "q-label" }, "Build readiness first");
+  el("text", { x: R - 8, y: B - 10, "text-anchor": "end", class: "q-label" }, "Quick efficiency");
+  el("text", { x: L + 8, y: B - 10, class: "q-label" }, "Not yet");
+  el("text", { x: L, y: B + 24, class: "axis" }, "Less ready");
+  el("text", { x: R, y: B + 24, "text-anchor": "end", class: "axis" }, "Ready now");
+  el("text", { x: (L + R) / 2, y: B + 44, "text-anchor": "middle", class: "axis" }, "Readiness: data, process, people →");
+  el("text", { x: 20, y: (T + B) / 2, "text-anchor": "middle", class: "axis", transform: "rotate(-90 20 " + (T + B) / 2 + ")" }, "Business value →");
+
+  var detail = document.getElementById("detail"), nodes = [], chipEls = [], chips = document.getElementById("chips");
+  function select(i) {
+    var o = opps[i];
+    nodes.forEach(function (g, k) { g.classList.toggle("sel", k === i); g.setAttribute("aria-pressed", k === i); });
+    chipEls.forEach(function (c, k) { c.setAttribute("aria-pressed", k === i); });
+    detail.innerHTML = '<span class="verdict"></span><h3></h3><div class="scores"><div><b></b><span>Value</span></div><div><b></b><span>Readiness</span></div><div><b></b><span>Risk</span></div></div><p class="why"></p><p class="human"></p>';
+    detail.querySelector(".verdict").textContent = verdict(o) + (o.j === "high" ? " · People decide" : " · AI can lead");
+    detail.querySelector("h3").textContent = o.n;
+    var b = detail.querySelectorAll(".scores b"); b[0].textContent = o.v.toFixed(1); b[1].textContent = o.r.toFixed(1); b[2].textContent = o.risk;
+    detail.querySelector(".why").textContent = o.why;
+    detail.querySelector(".human").textContent = "What stays human: " + o.human;
+  }
+  opps.forEach(function (o, i) {
+    var g = document.createElementNS(NS, "g");
+    g.setAttribute("class", "pt " + o.j); g.setAttribute("tabindex", "0"); g.setAttribute("role", "button");
+    g.setAttribute("aria-label", o.n + ", value " + o.v + ", readiness " + o.r);
+    var cx = x(o.r), cy = y(o.v), anchorEnd = cx > 470;
+    var c = document.createElementNS(NS, "circle"); c.setAttribute("cx", cx); c.setAttribute("cy", cy); c.setAttribute("r", 8); g.appendChild(c);
+    var tx = document.createElementNS(NS, "text"); tx.setAttribute("x", anchorEnd ? cx - 14 : cx + 14); tx.setAttribute("y", cy + 4);
+    if (anchorEnd) tx.setAttribute("text-anchor", "end");
+    tx.textContent = o.n; g.appendChild(tx);
+    g.addEventListener("click", function () { select(i); });
+    g.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); select(i); } });
+    svg.appendChild(g); nodes.push(g);
+    var chip = document.createElement("button"); chip.type = "button"; chip.textContent = o.n;
+    chip.addEventListener("click", function () { select(i); }); chips.appendChild(chip); chipEls.push(chip);
+  });
+  select(1);
+
+  // Starting-point diagnostic. Each answer scores 0 (early), 1 (partial) or 2 (established).
+  var qs = [
+    { q: "Does your leadership team agree on where AI belongs in the business?", o: ["Not yet", "We have a list of ideas", "Yes, and it's prioritized"] },
+    { q: "Are AI pilots becoming normal practice?", o: ["No pilots yet", "Pilots, but they stall", "Yes, several are in daily use"] },
+    { q: "Who owns AI planning?", o: ["No one specifically", "Split across IT and the business", "A named executive with a plan"] },
+    { q: "Can you answer the board's questions on AI strategy?", o: ["Not convincingly", "Partly", "Yes, we brief them regularly"] },
+    { q: "How do you evaluate AI proposals from vendors and teams?", o: ["Case by case", "Some informal criteria", "Against an agreed roadmap"] }
+  ];
+  var form = document.getElementById("diag-form");
+  qs.forEach(function (item, i) {
+    var fs = document.createElement("fieldset");
+    var lg = document.createElement("legend"); lg.textContent = (i + 1) + ". " + item.q; fs.appendChild(lg);
+    var opts = document.createElement("div"); opts.className = "opts";
+    item.o.forEach(function (label, v) {
+      var l = document.createElement("label");
+      var inp = document.createElement("input"); inp.type = "radio"; inp.name = "q" + i; inp.value = v; inp.id = "q" + i + "-" + v;
+      var s = document.createElement("span"); s.textContent = label;
+      l.appendChild(inp); l.appendChild(s); opts.appendChild(l);
+    });
+    fs.appendChild(opts); form.appendChild(fs);
+  });
+  var prog = document.getElementById("progress");
+  for (var p = 0; p < 5; p++) prog.appendChild(document.createElement("i"));
+  var recs = {
+    briefing: { t: "Leadership Briefing", b: "Your team needs a shared, realistic picture of what AI can do for your business before planning anything. One focused day gets everyone to the same starting line." },
+    brief: { t: "AI Application Brief", b: "You know AI matters and have ideas, but not a defensible answer to where it belongs. In four weeks we answer the five questions and give you a ranked portfolio and a 90-day plan." },
+    roadmap: { t: "AI Strategy & Roadmap", b: "You have momentum and priorities. The next step is a funded, sequenced 18-month plan the board can approve, including the workforce and governance changes." },
+    office: { t: "Fractional AI Planning Office", b: "You have a plan and activity underway. What you need now is senior, independent planning on call: keeping the roadmap current, reviewing proposals, and preparing leadership for decisions." }
+  };
+  function update() {
+    var vals = qs.map(function (_, i) { var c = form.querySelector('input[name="q' + i + '"]:checked'); return c ? +c.value : null; });
+    var answered = vals.filter(function (v) { return v !== null; }).length;
+    prog.querySelectorAll("i").forEach(function (b, i) { b.classList.toggle("on", i < answered); });
+    document.getElementById("r-count").textContent = answered + " of 5 answered";
+    var why = document.getElementById("r-why"), also = document.getElementById("r-also"), cta = document.getElementById("r-cta");
+    if (answered < 5) {
+      document.getElementById("r-title").textContent = "Your recommended starting point";
+      document.getElementById("r-body").textContent = "Answer the remaining " + (5 - answered) + " question" + (5 - answered === 1 ? "" : "s") + " to see where we'd suggest you start.";
+      why.hidden = also.hidden = cta.hidden = true; return;
+    }
+    var total = vals.reduce(function (a, b) { return a + b; }, 0);
+    var key = total <= 1 ? "briefing" : total <= 4 ? "brief" : total <= 7 ? "roadmap" : "office";
+    document.getElementById("r-title").textContent = recs[key].t;
+    document.getElementById("r-body").textContent = recs[key].b;
+    var gaps = [];
+    if (vals[0] === 0) gaps.push("no agreed view of where AI belongs");
+    if (vals[1] === 1) gaps.push("pilots that stall");
+    if (vals[2] === 0) gaps.push("no clear owner for AI planning");
+    if (vals[4] === 0) gaps.push("proposals judged case by case");
+    why.hidden = gaps.length === 0;
+    why.textContent = gaps.length ? "Based on your answers, the gaps to close first: " + gaps.join("; ") + "." : "";
+    also.hidden = vals[3] !== 0;
+    also.textContent = "Your board is asking questions you can't yet answer. We'd include a board-ready summary in whichever engagement you choose.";
+    cta.hidden = false;
+    var sel = document.getElementById("f-interest");
+    for (var k = 0; k < sel.options.length; k++) if (sel.options[k].text === recs[key].t) sel.selectedIndex = k;
+  }
+  form.addEventListener("change", update);
+
+  // Contact form (not yet connected to a backend)
+  document.getElementById("contact-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var msg = document.getElementById("form-msg"), name = document.getElementById("f-name").value.trim(), email = document.getElementById("f-email").value.trim();
+    msg.hidden = false;
+    if (!name || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { msg.textContent = "Add your name and a valid work email so we can reply."; return; }
+    msg.textContent = "This is a preview site, so the form isn't connected yet. Your message was not sent.";
+  });
+})();
+</script>
+</body>
+</html>
