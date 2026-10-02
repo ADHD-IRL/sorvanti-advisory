@@ -535,6 +535,7 @@ footer p { color: var(--muted); font-size: 0.9rem; }
           </select>
         </div>
         <div class="field"><label for="f-msg">What decision is your leadership team facing?</label><textarea id="f-msg" name="message"></textarea></div>
+        <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
         <div><button class="btn" type="submit">Send</button></div>
         <p class="form-msg" id="form-msg" role="status" hidden></p>
       </form>
@@ -657,6 +658,7 @@ footer p { color: var(--muted); font-size: 0.9rem; }
     roadmap: { t: "AI Strategy & Roadmap", b: "You have momentum and priorities. The next step is a funded, sequenced 18-month plan the board can approve, including the workforce and governance changes." },
     office: { t: "Fractional AI Planning Office", b: "You have a plan and activity underway. What you need now is senior, independent planning on call: keeping the roadmap current, reviewing proposals, and preparing leadership for decisions." }
   };
+  var quizResult = "";
   function update() {
     var vals = qs.map(function (_, i) { var c = form.querySelector('input[name="q' + i + '"]:checked'); return c ? +c.value : null; });
     var answered = vals.filter(function (v) { return v !== null; }).length;
@@ -666,11 +668,12 @@ footer p { color: var(--muted); font-size: 0.9rem; }
     if (answered < 5) {
       document.getElementById("r-title").textContent = "Your recommended starting point";
       document.getElementById("r-body").textContent = "Answer the remaining " + (5 - answered) + " question" + (5 - answered === 1 ? "" : "s") + " to see where we'd suggest you start.";
-      why.hidden = also.hidden = cta.hidden = true; return;
+      quizResult = ""; why.hidden = also.hidden = cta.hidden = true; return;
     }
     var total = vals.reduce(function (a, b) { return a + b; }, 0);
     var key = total <= 1 ? "briefing" : total <= 4 ? "brief" : total <= 7 ? "roadmap" : "office";
     document.getElementById("r-title").textContent = recs[key].t;
+    quizResult = recs[key].t + " (score " + total + " of 10)";
     document.getElementById("r-body").textContent = recs[key].b;
     var gaps = [];
     if (vals[0] === 0) gaps.push("no agreed view of where AI belongs");
@@ -687,13 +690,45 @@ footer p { color: var(--muted); font-size: 0.9rem; }
   }
   form.addEventListener("change", update);
 
-  // Contact form (not yet connected to a backend)
-  document.getElementById("contact-form").addEventListener("submit", function (e) {
+  // Contact form → Web3Forms (emails each inquiry to the address the key was created with).
+  // The access key is safe to publish: it can only send submissions to that inbox.
+  var WEB3FORMS_KEY = "bd6d6978-f2b7-408b-972d-f03c824b476f";
+  var contactForm = document.getElementById("contact-form");
+  var sendBtn = contactForm.querySelector('button[type="submit"]');
+  function val(id) { var el = document.getElementById(id); return el ? el.value.trim() : ""; }
+  contactForm.addEventListener("submit", function (e) {
     e.preventDefault();
-    var msg = document.getElementById("form-msg"), name = document.getElementById("f-name").value.trim(), email = document.getElementById("f-email").value.trim();
+    var msg = document.getElementById("form-msg"), name = val("f-name"), email = val("f-email");
     msg.hidden = false;
     if (!name || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { msg.textContent = "Add your name and a valid work email so we can reply."; return; }
-    msg.textContent = "This is a preview site, so the form isn't connected yet. Your message was not sent.";
+    if (contactForm.querySelector('input[name="botcheck"]').checked) return;
+    if (WEB3FORMS_KEY.indexOf("YOUR_") === 0) { msg.textContent = "This is a preview site, so the form isn't connected yet. Your message was not sent."; return; }
+    var payload = {
+      access_key: WEB3FORMS_KEY,
+      subject: "Website inquiry: " + name + (val("f-org") ? " (" + val("f-org") + ")" : "") + " · Advisory",
+      from_name: "Sorvanti website",
+      "Source": "Advisory website",
+      name: name,
+      email: email,
+      "Role": val("f-role"),
+      "Organization": val("f-org"),
+      "Interested in": val("f-interest"),
+      "Where to start quiz": quizResult || "Not taken",
+      message: val("f-msg"),
+      botcheck: false
+    };
+    sendBtn.disabled = true; sendBtn.textContent = "Sending…"; msg.textContent = "";
+    fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify(payload)
+    }).then(function (r) { return r.json(); }).then(function (data) {
+      if (!data.success) throw new Error(data.message || "Send failed");
+      msg.textContent = "Thanks, " + name.split(" ")[0] + ". Your message is on its way, and we'll be in touch soon.";
+      contactForm.reset();
+    }).catch(function () {
+      msg.textContent = "Your message didn't send. Check your connection and try again in a moment.";
+    }).then(function () { sendBtn.disabled = false; sendBtn.textContent = "Send"; });
   });
 })();
 </script>
