@@ -73,6 +73,15 @@ nav a.sister-link { color: var(--gold); }
 .btn.ghost { background: transparent; color: var(--ink); border-color: var(--ink); }
 .btn.ghost:hover { background: var(--ink); color: var(--paper); }
 .head-cta { padding: 8px 14px; font-size: 0.88rem; }
+/* Desktop: the header runs wider than the page so the menu gets five equal columns,
+   each label centered, spread evenly between the logo and the button */
+@media (min-width: 1201px) {
+  .site-head .wrap { max-width: 1400px; gap: 32px; }
+  .site-head nav { flex: 1; }
+  .site-head nav ul { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0; text-align: center; }
+  .site-head nav a { white-space: nowrap; }
+  .head-cta { min-width: 11rem; }
+}
 .menu-btn { display: none; width: 44px; height: 44px; padding: 0; border: 1px solid var(--rule); border-radius: 2px; background: transparent; color: var(--ink); cursor: pointer; place-items: center; }
 .menu-btn .bars, .menu-btn .bars::before, .menu-btn .bars::after { display: block; width: 18px; height: 1.5px; background: currentColor; position: relative; transition: transform .25s ease, background .25s ease; }
 .menu-btn .bars::before, .menu-btn .bars::after { content: ""; position: absolute; left: 0; }
@@ -80,7 +89,7 @@ nav a.sister-link { color: var(--gold); }
 .menu-btn[aria-expanded="true"] .bars { background: transparent; }
 .menu-btn[aria-expanded="true"] .bars::before { transform: translateY(6px) rotate(45deg); }
 .menu-btn[aria-expanded="true"] .bars::after { transform: translateY(-6px) rotate(-45deg); }
-@media (max-width: 920px) {
+@media (max-width: 1200px) {
   .site-head .wrap { flex-wrap: wrap; row-gap: 0; }
   .menu-btn { display: grid; }
   .site-head nav { order: 3; flex-basis: 100%; display: grid; grid-template-rows: 0fr; transition: grid-template-rows .3s ease; }
@@ -561,7 +570,7 @@ footer p { color: var(--muted); font-size: 0.9rem; }
   menuBtn.addEventListener("click", function () { setMenu(!nav.classList.contains("open")); });
   nav.addEventListener("click", function (e) { if (e.target.closest("a")) setMenu(false); });
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") setMenu(false); });
-  window.matchMedia("(min-width: 921px)").addEventListener("change", function (m) { if (m.matches) setMenu(false); });
+  window.matchMedia("(min-width: 1201px)").addEventListener("change", function (m) { if (m.matches) setMenu(false); });
 
   // Opportunity portfolio (illustrative). value and readiness on a 0–10 scale.
   var opps = [
