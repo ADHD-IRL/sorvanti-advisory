@@ -8,25 +8,25 @@
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Montserrat:wght@600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Space+Mono:wght@400;700&family=Montserrat:wght@600&display=swap">
 <style>
 /* Layout: the leadership briefing. Pages read like a board memo: a cover-sheet hero, numbered questions,
-   a portfolio matrix as the one bold visual. Single dark look: black page, layered grays, gold as the only accent. */
+   a portfolio matrix as the one bold visual. 1960s mid-century look: cream paper, walnut ink, mustard / burnt orange / teal, geometric sans. */
 :root {
-  --paper: #0A0A0B;
-  --sheet: #151517;
-  --raised: #222226;
-  --ink: #EDEDEF;
-  --muted: #9C9CA3;
-  --rule: #2C2C30;
-  --hi: #FFFFFF;
-  --dot: #BDBDC3;
-  --gold: #E0B03A;
-  --gold-soft: #2A2416;
-  --stop: #E07A6A;
-  --display: "Spectral", "Iowan Old Style", Georgia, serif;
-  --body: "Instrument Sans", "Segoe UI", system-ui, sans-serif;
-  --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+  --paper: #F3E8D2;
+  --sheet: #FBF5E8;
+  --raised: #EEDFBF;
+  --ink: #2B2019;
+  --muted: #6B5B49;
+  --rule: #DCCBA8;
+  --hi: #5A3D27;
+  --dot: #2E7D74;
+  --gold: #B54C17;
+  --gold-soft: #F5D9B5;
+  --stop: #A9372A;
+  --display: "Jost", "Futura", "Century Gothic", sans-serif;
+  --body: "Jost", "Futura", "Century Gothic", "Segoe UI", sans-serif;
+  --mono: "Space Mono", "Courier New", monospace;
   --logo: "Montserrat", "Segoe UI", system-ui, sans-serif;
   --step-0: clamp(1rem, 0.97rem + 0.14vw, 1.08rem);
   --step-1: clamp(1.15rem, 1.07rem + 0.36vw, 1.36rem);
@@ -39,7 +39,8 @@
   --space-xl: clamp(3.5rem, 2.6rem + 4vw, 7rem);
   --gutter: clamp(16px, 4vw, 40px);
   --wrap: 1160px;
-  color-scheme: dark;
+  --mustard: #D99A1E; --orange: #C8561C; --teal: #2E7D74; --walnut: #5A3D27;
+  color-scheme: light;
 }
 
 * { box-sizing: border-box; }
@@ -303,6 +304,55 @@ form { display: grid; gap: 16px; }
 footer { padding-block: 40px 56px; border-top: 1px solid var(--rule); }
 footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; align-items: center; }
 footer p { color: var(--muted); font-size: 0.9rem; }
+
+/* ---------- 60s mid-century look (shared by both Sorvanti sites) ---------- */
+body { background-image: radial-gradient(rgba(90, 61, 39, 0.045) 1px, transparent 1px); background-size: 4px 4px; }
+.site-head { background: color-mix(in srgb, var(--paper) 94%, transparent); border-bottom: 0; }
+.site-head::after { content: ""; display: block; height: 9px; background: linear-gradient(var(--mustard) 0 3px, var(--orange) 3px 6px, var(--teal) 6px 9px); }
+.wordmark .practice { font-style: italic; font-weight: 500; color: var(--orange); }
+nav a { font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; font-size: 0.8rem; }
+nav a.sister-link { color: var(--teal); }
+h1, h2, h3 { font-weight: 600; letter-spacing: -0.005em; }
+.hero h1 { font-weight: 600; letter-spacing: -0.015em; }
+.sec-head h2 { text-transform: uppercase; letter-spacing: 0.03em; }
+.label { color: var(--walnut); letter-spacing: 0.15em; }
+.btn { border-radius: 999px; font-weight: 600; padding: 12px 22px; background: var(--walnut); border-color: var(--walnut); color: #FBF5E8; }
+.btn:hover { background: transparent; color: var(--walnut); }
+.btn.ghost { border-color: var(--walnut); color: var(--walnut); background: transparent; }
+.btn.ghost:hover { background: var(--walnut); color: #FBF5E8; }
+.head-cta { background: var(--orange); border-color: var(--orange); }
+.head-cta:hover { background: transparent; color: var(--orange); }
+.field input, .field select, .field textarea { border-radius: 10px; background: #FFFDF7; }
+
+.hero h1 strong { font-weight: 700; color: var(--orange); }
+.cover, .matrix, .guide, .model .col, .result, .sister, .steps li, .not-us, .detail .scores div { border-radius: 16px; }
+.cover { transform: rotate(-1.2deg); box-shadow: 8px 8px 0 var(--mustard); border: 2px solid var(--walnut); }
+.cover .top { border-bottom-color: var(--orange); }
+.matrix, .guide, .model .col, .result, .sister { box-shadow: 6px 6px 0 var(--rule); }
+.opts span { border-radius: 10px; background: #FFFDF7; }
+.opts input:checked + span { background: var(--gold-soft); border-color: var(--orange); box-shadow: inset 0 0 0 1px var(--orange); }
+.eng.feature { background: var(--gold-soft); border-radius: 16px; }
+.eng .tag { border-radius: 999px; color: var(--orange); border-color: var(--orange); }
+.gap { background: var(--teal); color: #FBF5E8; border-block: 0; }
+.gap .label { color: #F5E6C4; }
+.gap blockquote em { color: var(--mustard); }
+.symptoms { background: transparent; border: 0; gap: 12px; }
+.symptoms p { background: #276B63; color: #E9F0E8; border-radius: 14px; }
+.symptoms p b { color: #FBF5E8; }
+.questions li::before { color: var(--orange); font-weight: 700; }
+.progress i.on { background: var(--orange); }
+.detail { border-top-color: var(--orange); }
+.detail .human { background: var(--gold-soft); border-radius: 12px; }
+.matrix .hotzone { fill: #F5D9B5; }
+.stance div { border-top: 4px solid var(--mustard); }
+.stance div:nth-child(2) { border-top-color: var(--orange); }
+.stance div:nth-child(3) { border-top-color: var(--teal); }
+.stance div:nth-child(4) { border-top-color: var(--walnut); }
+.model .col.give { border-top: 0; box-shadow: 6px 6px 0 var(--mustard); }
+.model .col.get { border-top: 0; box-shadow: 6px 6px 0 var(--teal); }
+.steps li::before { color: var(--orange); }
+.lane.go { --lane: var(--teal); }
+.lane.check { --lane: #9A6A07; }
 </style>
 </head>
 <body>
