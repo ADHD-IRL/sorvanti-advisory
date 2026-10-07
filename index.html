@@ -353,13 +353,18 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.005em; }
 .steps li::before { color: var(--orange); }
 .lane.go { --lane: var(--teal); }
 .lane.check { --lane: #9A6A07; }
+
+/* the Sorvanti logo goes home; the practice name goes to the top of this site */
+.wordmark a { text-decoration: none; color: inherit; }
+.wordmark .home-link:hover .logotype { color: var(--orange); }
+.wordmark .practice:hover { color: var(--teal); }
 </style>
 </head>
 <body>
 
 <header class="site-head">
   <div class="wrap">
-    <a class="wordmark" href="#top" aria-label="Sorvanti Advisory, home"><span class="logo"><img src="assets/sorvanti-mark.png" alt="" width="38" height="38"><span class="logotype">Sorvanti</span></span><span class="practice">Advisory</span></a>
+    <div class="wordmark"><a class="home-link" href="https://sorvantigroup.com/" aria-label="Sorvanti home" title="Sorvanti home"><span class="logo"><img src="assets/sorvanti-mark.png" alt="" width="38" height="38"><span class="logotype">Sorvanti</span></span></a><a class="practice" href="#top" aria-label="Sorvanti Advisory, back to top">Advisory</a></div>
     <div class="head-right">
       <a class="btn head-cta" href="#contact">Start a conversation</a>
       <button type="button" class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu"><span class="bars"></span></button>
@@ -686,7 +691,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.005em; }
 
 <footer>
   <div class="wrap">
-    <a class="wordmark" href="#top" aria-label="Sorvanti Advisory, back to top"><span class="logo"><img src="assets/sorvanti-mark.png" alt="" width="38" height="38"><span class="logotype">Sorvanti</span></span><span class="practice">Advisory</span></a>
+    <div class="wordmark"><a class="home-link" href="https://sorvantigroup.com/" aria-label="Sorvanti home" title="Sorvanti home"><span class="logo"><img src="assets/sorvanti-mark.png" alt="" width="38" height="38"><span class="logotype">Sorvanti</span></span></a><a class="practice" href="#top" aria-label="Sorvanti Advisory, back to top">Advisory</a></div>
     <p>Strategic AI planning for leadership teams.</p>
     <p>© 2026 Sorvanti</p>
   </div>
