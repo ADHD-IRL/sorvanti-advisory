@@ -8,25 +8,25 @@
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Space+Mono:wght@400;700&family=Montserrat:wght@600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..800&family=Public+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&family=Yellowtail&family=Montserrat:wght@600&display=swap">
 <style>
 /* Layout: the leadership briefing. Pages read like a board memo: a cover-sheet hero, numbered questions,
-   a portfolio matrix as the one bold visual. 1960s mid-century look: cream paper, walnut ink, mustard / burnt orange / teal, geometric sans. */
+   a portfolio matrix as the one bold visual. Atomic modern: crisp professional base with 1950s atomic-age accents (aqua, coral, mustard; orbits and starbursts). */
 :root {
-  --paper: #F3E8D2;
-  --sheet: #FBF5E8;
-  --raised: #EEDFBF;
-  --ink: #2B2019;
-  --muted: #6B5B49;
-  --rule: #DCCBA8;
-  --hi: #5A3D27;
-  --dot: #2E7D74;
-  --gold: #B54C17;
-  --gold-soft: #F5D9B5;
-  --stop: #A9372A;
-  --display: "Jost", "Futura", "Century Gothic", sans-serif;
-  --body: "Jost", "Futura", "Century Gothic", "Segoe UI", sans-serif;
-  --mono: "Space Mono", "Courier New", monospace;
+  --paper: #FAF8F3;
+  --sheet: #FFFFFF;
+  --raised: #EEF4F2;
+  --ink: #1E2A33;
+  --muted: #5B6770;
+  --rule: #E2E0D8;
+  --hi: #1E2A33;
+  --dot: #2A9D96;
+  --gold: #C24B2C;
+  --gold-soft: #FBE5DD;
+  --stop: #B23A2A;
+  --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --body: "Public Sans", "Segoe UI", system-ui, sans-serif;
+  --mono: "DM Mono", ui-monospace, Consolas, monospace;
   --logo: "Montserrat", "Segoe UI", system-ui, sans-serif;
   --step-0: clamp(1rem, 0.97rem + 0.14vw, 1.08rem);
   --step-1: clamp(1.15rem, 1.07rem + 0.36vw, 1.36rem);
@@ -39,7 +39,9 @@
   --space-xl: clamp(3.5rem, 2.6rem + 4vw, 7rem);
   --gutter: clamp(16px, 4vw, 40px);
   --wrap: 1160px;
-  --mustard: #D99A1E; --orange: #C8561C; --teal: #2E7D74; --walnut: #5A3D27;
+  --mustard: #E5AF3E; --orange: #E0603F; --teal: #2A9D96; --walnut: #1E2A33;
+  --coral-text: #C24B2C; --aqua-soft: #DDF0EE; --coral-soft: #FBE5DD; --navy: #1E2A33; --navy-2: #283846; --mist: #EEF4F2;
+  --script: "Yellowtail", "Brush Script MT", cursive; --star: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 0 L56 38 L85 15 L62 44 L100 50 L62 56 L85 85 L56 62 L50 100 L44 62 L15 85 L38 56 L0 50 L38 44 L15 15 L44 38 Z'/%3E%3C/svg%3E"); --spark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 0 C53 35 65 47 100 50 C65 53 53 65 50 100 C47 65 35 53 0 50 C35 47 47 35 50 0 Z'/%3E%3C/svg%3E");
   color-scheme: light;
 }
 
@@ -124,6 +126,7 @@ nav a.sister-link { color: var(--gold); }
 .cover li::before { content: counter(c) "."; font-family: var(--mono); font-size: 0.78rem; color: var(--gold); }
 .cover li span { font-family: var(--mono); font-size: 0.72rem; color: var(--muted); font-variant-numeric: tabular-nums; }
 @media (max-width: 920px) { .hero-grid { grid-template-columns: 1fr; } .cover { transform: none; max-width: 520px; } }
+@media (max-width: 600px) { .cover::before, .cover::after { inset: 24% -14px; } .cover .top::after { right: -8px; } }
 
 /* Hero note */
 .hero-note { margin-top: 20px; font-size: 0.95rem; color: var(--muted); }
@@ -305,54 +308,59 @@ footer { padding-block: 40px 56px; border-top: 1px solid var(--rule); }
 footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; align-items: center; }
 footer p { color: var(--muted); font-size: 0.9rem; }
 
-/* ---------- 60s mid-century look (shared by both Sorvanti sites) ---------- */
-body { background-image: radial-gradient(rgba(90, 61, 39, 0.045) 1px, transparent 1px); background-size: 4px 4px; }
-.site-head { background: color-mix(in srgb, var(--paper) 94%, transparent); border-bottom: 0; }
-.site-head::after { content: ""; display: block; height: 9px; background: linear-gradient(var(--mustard) 0 3px, var(--orange) 3px 6px, var(--teal) 6px 9px); }
-.wordmark .practice { font-style: italic; font-weight: 500; color: var(--orange); }
-nav a { font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; font-size: 0.8rem; }
+/* ---------- atomic modern (shared by all three Sorvanti sites) ---------- */
+main { overflow-x: clip; }
+.site-head { background: color-mix(in srgb, var(--paper) 92%, transparent); border-bottom: 1px solid var(--rule); }
+.wordmark .practice { font-family: var(--script); font-style: normal; font-weight: 400; font-size: 1.35rem; color: var(--coral-text); line-height: 1; }
+nav a { font-weight: 500; }
 nav a.sister-link { color: var(--teal); }
-h1, h2, h3 { font-weight: 600; letter-spacing: -0.005em; }
-.hero h1 { font-weight: 600; letter-spacing: -0.015em; }
-.sec-head h2 { text-transform: uppercase; letter-spacing: 0.03em; }
-.label { color: var(--walnut); letter-spacing: 0.15em; }
-.btn { border-radius: 999px; font-weight: 600; padding: 12px 22px; background: var(--walnut); border-color: var(--walnut); color: #FBF5E8; }
-.btn:hover { background: transparent; color: var(--walnut); }
-.btn.ghost { border-color: var(--walnut); color: var(--walnut); background: transparent; }
-.btn.ghost:hover { background: var(--walnut); color: #FBF5E8; }
+h1, h2, h3 { letter-spacing: -0.01em; }
+.hero h1 { font-weight: 800; font-stretch: 112%; letter-spacing: -0.02em; }
+.sec-head h2 { font-weight: 800; font-stretch: 108%; }
+.label { color: var(--teal); display: inline-flex; align-items: center; gap: 8px; }
+.label::before { content: ""; width: 11px; height: 11px; flex: none; background: var(--orange); -webkit-mask: var(--star) center / contain no-repeat; mask: var(--star) center / contain no-repeat; }
+.btn { border-radius: 10px; font-weight: 600; background: var(--navy); border-color: var(--navy); color: #FFF; transition: transform .15s ease, background .15s ease; }
+.btn:hover { background: var(--navy-2); color: #FFF; transform: translateY(-1px); }
+.btn.ghost { background: transparent; color: var(--navy); border-color: var(--navy); }
+.btn.ghost:hover { background: var(--navy); color: #FFF; }
 .head-cta { background: var(--orange); border-color: var(--orange); }
-.head-cta:hover { background: transparent; color: var(--orange); }
-.field input, .field select, .field textarea { border-radius: 10px; background: #FFFDF7; }
-
-.hero h1 strong { font-weight: 700; color: var(--orange); }
+.head-cta:hover { background: var(--coral-text); border-color: var(--coral-text); }
+.field input, .field select, .field textarea { border-radius: 10px; }
+.field input:focus, .field select:focus, .field textarea:focus { outline: 3px solid var(--aqua-soft); border-color: var(--teal); }
+@media (prefers-reduced-motion: reduce) { .btn { transition: none; } }
+.hero h1 strong { font-weight: 800; color: var(--coral-text); }
 .cover, .matrix, .guide, .model .col, .result, .sister, .steps li, .not-us, .detail .scores div { border-radius: 16px; }
-.cover { transform: rotate(-1.2deg); box-shadow: 8px 8px 0 var(--mustard); border: 2px solid var(--walnut); }
-.cover .top { border-bottom-color: var(--orange); }
-.matrix, .guide, .model .col, .result, .sister { box-shadow: 6px 6px 0 var(--rule); }
-.opts span { border-radius: 10px; background: #FFFDF7; }
-.opts input:checked + span { background: var(--gold-soft); border-color: var(--orange); box-shadow: inset 0 0 0 1px var(--orange); }
-.eng.feature { background: var(--gold-soft); border-radius: 16px; }
-.eng .tag { border-radius: 999px; color: var(--orange); border-color: var(--orange); }
-.gap { background: var(--teal); color: #FBF5E8; border-block: 0; }
-.gap .label { color: #F5E6C4; }
-.gap blockquote em { color: var(--mustard); }
-.symptoms { background: transparent; border: 0; gap: 12px; }
-.symptoms p { background: #276B63; color: #E9F0E8; border-radius: 14px; }
-.symptoms p b { color: #FBF5E8; }
-.questions li::before { color: var(--orange); font-weight: 700; }
-.progress i.on { background: var(--orange); }
+.cover { position: relative; transform: none; box-shadow: 0 1px 2px rgba(30,42,51,.06), 0 18px 40px -18px rgba(30,42,51,.25); }
+.cover::before, .cover::after { content: ""; position: absolute; inset: 20% -64px; border-radius: 50%; border: 1.4px solid var(--teal); opacity: .5; transform: rotate(-22deg); z-index: -1; pointer-events: none; }
+.cover::after { border-color: var(--orange); opacity: .45; transform: rotate(34deg); }
+.cover .top { border-bottom-color: var(--orange); position: relative; }
+.cover .top::after { content: ""; position: absolute; right: -30px; top: -52px; width: 38px; height: 38px; background: var(--mustard); -webkit-mask: var(--star) center / contain no-repeat; mask: var(--star) center / contain no-repeat; }
+.matrix, .guide, .model .col, .result, .sister { box-shadow: 0 16px 36px -22px rgba(30,42,51,.3); }
+.opts span { border-radius: 10px; }
+.opts input:checked + span { background: var(--aqua-soft); border-color: var(--teal); box-shadow: inset 0 0 0 1px var(--teal); }
+.eng.feature { background: var(--mist); border-radius: 16px; }
+.eng .tag { border-radius: 999px; color: var(--coral-text); border-color: var(--orange); }
+.gap { background: var(--navy); color: #F4F1EA; border-block: 0; position: relative; overflow: hidden; }
+.gap::before { content: ""; position: absolute; width: 620px; height: 260px; right: -160px; top: -90px; border-radius: 60% 40% 70% 30% / 60% 50% 50% 40%; border: 2px solid rgba(42, 157, 150, 0.45); transform: rotate(-12deg); }
+.gap .label { color: #8FD3CD; }
+.gap blockquote em { color: var(--mustard); font-style: normal; }
+.symptoms { background: transparent; border: 0; gap: 14px; position: relative; }
+.symptoms p { background: var(--navy-2); color: #C8D0D4; border-radius: 16px; border: 1px solid rgba(255,255,255,.07); }
+.symptoms p b { color: #FFF; }
+.questions li::before { color: var(--orange); font-weight: 800; }
+.progress i.on { background: var(--teal); }
 .detail { border-top-color: var(--orange); }
-.detail .human { background: var(--gold-soft); border-radius: 12px; }
-.matrix .hotzone { fill: #F5D9B5; }
-.stance div { border-top: 4px solid var(--mustard); }
-.stance div:nth-child(2) { border-top-color: var(--orange); }
-.stance div:nth-child(3) { border-top-color: var(--teal); }
-.stance div:nth-child(4) { border-top-color: var(--walnut); }
-.model .col.give { border-top: 0; box-shadow: 6px 6px 0 var(--mustard); }
-.model .col.get { border-top: 0; box-shadow: 6px 6px 0 var(--teal); }
+.detail .human { background: var(--coral-soft); border-radius: 12px; }
+.matrix .hotzone { fill: var(--aqua-soft); }
+.stance div { border-top: 0; padding-top: 0; }
+.stance div::before { content: ""; display: block; width: 24px; height: 24px; margin-bottom: 10px; background: var(--c, var(--teal)); -webkit-mask: var(--star) center / contain no-repeat; mask: var(--star) center / contain no-repeat; }
+.stance div:nth-child(2) { --c: var(--orange); } .stance div:nth-child(3) { --c: var(--mustard); } .stance div:nth-child(4) { --c: var(--navy); }
+.model .col.give { border-top: 3px solid var(--mustard); }
+.model .col.get { border-top: 3px solid var(--teal); }
 .steps li::before { color: var(--orange); }
 .lane.go { --lane: var(--teal); }
-.lane.check { --lane: #9A6A07; }
+.lane.check { --lane: #B07A12; }
+.pack b::before { content: ""; display: inline-block; width: 11px; height: 11px; margin-right: 8px; background: var(--orange); -webkit-mask: var(--spark) center / contain no-repeat; mask: var(--spark) center / contain no-repeat; }
 
 /* the Sorvanti logo goes home; the practice name goes to the top of this site */
 .wordmark a { text-decoration: none; color: inherit; }
