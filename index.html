@@ -11,18 +11,20 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Manrope:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Montserrat:wght@600&display=swap">
 <style>
 /* Layout: the leadership briefing. Pages read like a board memo: a cover-sheet hero, numbered questions,
-   a portfolio matrix as the one bold visual. Modern metallic: gunmetal ground, chrome headlines, brushed-aluminum cover plate, copper as the single accent. */
+   a portfolio matrix as the one bold visual. Modern metallic: gunmetal ground, chrome headlines, brushed-aluminum cover plate, amber as the single accent. */
 :root {
+  --leaf: #8DB51A; --emerald: #1F9A6E; --forest: #0B4A33; --emerald-text: #5CC99A;
+  --logo-sweep: linear-gradient(90deg, #0B4A33 0%, #1F9A6E 30%, #8DB51A 62%, #F0B000 100%);
   --paper: #121518;
   --sheet: #1E2328;
   --raised: #262C32;
   --ink: #E8EBEE;
   --muted: #9AA3AB;
   --rule: #3A424A;
-  --hi: #E6A779;
+  --hi: #F4C542;
   --dot: #C9CFD5;
-  --gold: #E39A68;
-  --gold-soft: #2B2420;
+  --gold: #F2BC3C;
+  --gold-soft: #26271A;
   --stop: #E07A6A;
   --display: "Sora", "Segoe UI", system-ui, sans-serif;
   --body: "Manrope", "Segoe UI", system-ui, sans-serif;
@@ -39,11 +41,11 @@
   --space-xl: clamp(3.5rem, 2.6rem + 4vw, 7rem);
   --gutter: clamp(16px, 4vw, 40px);
   --wrap: 1160px;
-  --copper: #C7804F; --copper-hi: #E6A779; --copper-lo: #9C5D33; --copper-text: #E39A68;
+  --amber: #E0A512; --amber-hi: #F4C542; --amber-lo: #A87A08; --amber-text: #F2BC3C;
   --steel: #C9CFD5; --steel-dim: #8D969F; --edge: #3A424A; --edge-hi: #59636D; --plate: #1E2328; --plate-2: #262C32;
-  --orange: #E6A779; --teal: #C9CFD5; --mustard: #E6A779; --walnut: #121518; --navy: #121518;
+  --orange: #F4C542; --teal: #C9CFD5; --mustard: #F4C542; --walnut: #121518; --navy: #121518;
   --chrome: linear-gradient(180deg, #FFFFFF 0%, #E4E8EC 38%, #9DA6AF 52%, #D5DADF 64%, #F4F6F8 100%);
-  --copper-chrome: linear-gradient(180deg, #F6C9A6 0%, #E6A779 40%, #9C5D33 58%, #E2A57A 100%);
+  --amber-chrome: linear-gradient(180deg, #FFE9A8 0%, #F4C542 40%, #A87A08 58%, #EDBE45 100%);
   --brushed: repeating-linear-gradient(90deg, rgba(255,255,255,.018) 0 1px, transparent 1px 3px);
   color-scheme: dark;
 }
@@ -318,15 +320,15 @@ body { background: var(--brushed), radial-gradient(1200px 600px at 75% -10%, #2A
 .wordmark .logotype { background: var(--chrome); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .wordmark .practice { font-family: var(--mono); font-style: normal; font-size: 0.74rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--steel-dim); border-left-color: var(--edge); }
 .wordmark .home-link:hover .logotype { color: transparent; filter: brightness(1.15); }
-.wordmark .practice:hover { color: var(--copper-text); }
+.wordmark .practice:hover { color: var(--amber-text); }
 nav a { color: var(--muted); font-weight: 500; }
 nav a:hover { color: var(--ink); }
-nav a.sister-link { color: var(--copper-text); }
+nav a.sister-link { color: var(--amber-text); }
 h1, h2, h3 { letter-spacing: -0.015em; }
 .hero h1, .sec-head h2 { font-weight: 700; background: var(--chrome); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .hero h1 { filter: drop-shadow(0 2px 0 rgba(0,0,0,.45)); }
 .label { color: var(--steel-dim); letter-spacing: 0.18em; display: inline-flex; align-items: center; gap: 10px; text-shadow: 0 -1px 0 rgba(0,0,0,.6); }
-.label::before { content: ""; width: 18px; height: 2px; border-radius: 2px; background: linear-gradient(90deg, var(--copper-lo), var(--copper-hi)); }
+.label::before { content: ""; width: 18px; height: 2px; border-radius: 2px; background: linear-gradient(90deg, var(--amber-lo), var(--amber-hi)); }
 .btn { position: relative; overflow: hidden; border-radius: 10px; font-weight: 700; color: var(--ink); border: 1px solid var(--edge-hi);
   background: linear-gradient(180deg, #3A424A, #262C32); box-shadow: inset 0 1px 0 rgba(255,255,255,.14), 0 6px 18px -8px rgba(0,0,0,.8); }
 .btn::after { content: ""; position: absolute; inset: 0; background: linear-gradient(105deg, transparent 35%, rgba(255,255,255,.28) 50%, transparent 65%); transform: translateX(-120%); transition: transform .7s ease; }
@@ -334,51 +336,57 @@ h1, h2, h3 { letter-spacing: -0.015em; }
 .btn:hover::after { transform: translateX(120%); }
 .btn.ghost { background: transparent; color: var(--ink); border-color: var(--edge-hi); box-shadow: inset 0 1px 0 rgba(255,255,255,.06); }
 .btn.ghost:hover { background: rgba(255,255,255,.04); color: var(--ink); }
-.head-cta, .btn.head-cta { color: #1A1008; border-color: var(--copper-hi); background: linear-gradient(180deg, var(--copper-hi) 0%, var(--copper) 48%, var(--copper-lo) 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,.45), 0 8px 22px -10px rgba(199,128,79,.7); }
-.head-cta:hover { color: #1A1008; background: linear-gradient(180deg, #EDB48A 0%, var(--copper) 48%, var(--copper-lo) 100%); }
+.head-cta, .btn.head-cta { color: #0A2A1C; border-color: var(--amber-hi); background: linear-gradient(180deg, var(--amber-hi) 0%, var(--amber) 48%, var(--amber-lo) 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,.45), 0 8px 22px -10px rgba(224,165,18,.7); }
+.head-cta:hover { color: #0A2A1C; background: linear-gradient(180deg, #F8D265 0%, var(--amber) 48%, var(--amber-lo) 100%); }
 .field input, .field select, .field textarea { border-radius: 10px; background: #101316; border-color: var(--edge); box-shadow: inset 0 2px 4px rgba(0,0,0,.5); color: var(--ink); }
-.field input:focus, .field select:focus, .field textarea:focus { outline: 2px solid var(--copper); border-color: transparent; }
+.field input:focus, .field select:focus, .field textarea:focus { outline: 2px solid var(--amber); border-color: transparent; }
 @media (prefers-reduced-motion: reduce) { .btn::after { display: none; } }
-.hero h1 strong { font-weight: 700; background: var(--copper-chrome); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.hero h1 strong { font-weight: 700; background: var(--amber-chrome); -webkit-background-clip: text; background-clip: text; color: transparent; }
 /* the AI Application Brief cover becomes the brushed-aluminum plate (local tokens keep its text dark) */
-.cover { color: #1C2126; border: 1px solid #F7F9FA; border-radius: 16px; background: repeating-linear-gradient(90deg, rgba(255,255,255,.22) 0 1px, rgba(0,0,0,.025) 1px 2px, transparent 2px 4px), linear-gradient(160deg, #EEF1F4 0%, #C9D0D6 45%, #E3E7EB 70%, #B9C1C8 100%); box-shadow: inset 0 1px 0 #FFF, inset 0 -2px 0 rgba(0,0,0,.18), 0 30px 60px -28px rgba(0,0,0,.9), 0 0 0 1px rgba(0,0,0,.4); transform: none; --ink: #1C2126; --muted: #4E5861; --rule: rgba(0,0,0,.14); --gold: #9C5D33; position: relative; }
+.cover { color: #1C2126; border: 1px solid #F7F9FA; border-radius: 16px; background: repeating-linear-gradient(90deg, rgba(255,255,255,.22) 0 1px, rgba(0,0,0,.025) 1px 2px, transparent 2px 4px), linear-gradient(160deg, #EEF1F4 0%, #C9D0D6 45%, #E3E7EB 70%, #B9C1C8 100%); box-shadow: inset 0 1px 0 #FFF, inset 0 -2px 0 rgba(0,0,0,.18), 0 30px 60px -28px rgba(0,0,0,.9), 0 0 0 1px rgba(0,0,0,.4); transform: none; --ink: #1C2126; --muted: #4E5861; --rule: rgba(0,0,0,.14); --gold: #A87A08; position: relative; }
 .cover::before, .cover::after { content: ""; position: absolute; top: 12px; width: 8px; height: 8px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #FFF, #8D969F 70%); box-shadow: inset 0 -1px 1px rgba(0,0,0,.4); }
 .cover::before { left: 12px; } .cover::after { right: 12px; }
 .cover .label { color: #4E5861; text-shadow: 0 1px 0 rgba(255,255,255,.7); }
 .cover .label::before { display: none; }
 .cover h2 { color: #1C2126; }
-.cover .top { border-bottom-color: var(--copper-lo); }
+.cover .top { border-bottom-color: var(--amber-lo); }
 .cover li { border-top-color: rgba(0,0,0,.12); color: #1C2126; }
 .matrix, .guide, .model .col, .result, .sister, .steps li, .not-us, .detail .scores div, .opts span { background: linear-gradient(180deg, var(--plate-2) 0%, var(--plate) 100%); border: 1px solid var(--edge); border-radius: 16px; box-shadow: inset 0 1px 0 rgba(255,255,255,.07), 0 18px 40px -26px rgba(0,0,0,.9); }
 .opts span { border-radius: 10px; }
-.opts input:checked + span { color: #1A1008; border-color: var(--copper-hi); background: linear-gradient(180deg, var(--copper-hi), var(--copper-lo)); box-shadow: none; }
-.eng.feature { border-radius: 16px; background: linear-gradient(180deg, #2B2420 0%, #1E1A17 100%); box-shadow: inset 0 1px 0 rgba(230,167,121,.3); }
-.eng .tag { border-radius: 6px; color: #1A1008; border-color: var(--copper-hi); background: linear-gradient(180deg, var(--copper-hi), var(--copper-lo)); }
+.opts input:checked + span { color: #0A2A1C; border-color: var(--amber-hi); background: linear-gradient(180deg, var(--amber-hi), var(--amber-lo)); box-shadow: none; }
+.eng.feature { border-radius: 16px; background: linear-gradient(180deg, #26271A 0%, #1C1E17 100%); box-shadow: inset 0 1px 0 rgba(244,197,66,.3); }
+.eng .tag { border-radius: 6px; color: #0A2A1C; border-color: var(--amber-hi); background: linear-gradient(180deg, var(--amber-hi), var(--amber-lo)); }
 .gap { background: linear-gradient(180deg, #0E1013, #14181B); color: var(--ink); border-block: 1px solid var(--edge); }
 .gap blockquote { background: var(--chrome); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.gap blockquote em { font-style: normal; background: var(--copper-chrome); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.gap blockquote em { font-style: normal; background: var(--amber-chrome); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .symptoms { background: transparent; border: 0; gap: 14px; }
 .symptoms p { background: linear-gradient(180deg, var(--plate-2) 0%, var(--plate) 100%); border: 1px solid var(--edge); border-radius: 16px; box-shadow: inset 0 1px 0 rgba(255,255,255,.07), 0 18px 40px -26px rgba(0,0,0,.9); color: var(--muted); }
 .symptoms p b { color: var(--ink); }
-.questions li::before { background: var(--copper-chrome); -webkit-background-clip: text; background-clip: text; color: transparent; font-weight: 700; }
-.progress i.on { background: linear-gradient(90deg, var(--copper-lo), var(--copper-hi)); }
-.detail { border-top-color: var(--copper); }
-.detail .human { background: #2B2420; border-radius: 12px; color: var(--ink); }
+.questions li::before { background: var(--amber-chrome); -webkit-background-clip: text; background-clip: text; color: transparent; font-weight: 700; }
+.progress i.on { background: linear-gradient(90deg, var(--amber-lo), var(--amber-hi)); }
+.detail { border-top-color: var(--amber); }
+.detail .human { background: #26271A; border-radius: 12px; color: var(--ink); }
 .matrix .hotzone { fill: #2A3138; }
-.matrix .pt.high circle { stroke: var(--copper-hi); }
+.matrix .pt.high circle { stroke: var(--amber-hi); }
 .stance div { border-top: 2px solid var(--edge-hi); }
-.stance div:nth-child(odd) { border-top-color: var(--copper); }
-.model .col.give { border-top: 2px solid var(--copper); }
+.stance div:nth-child(odd) { border-top-color: var(--amber); }
+.model .col.give { border-top: 2px solid var(--amber); }
 .model .col.get { border-top: 2px solid var(--steel-dim); }
-.steps li::before { color: var(--copper-text); }
+.steps li::before { color: var(--amber-text); }
 .lane.go { --lane: var(--steel); }
-.lane.check { --lane: var(--copper-hi); }
-.guide .top { border-bottom-color: var(--copper); }
+.lane.check { --lane: var(--amber-hi); }
+.guide .top { border-bottom-color: var(--amber); }
 
 /* the Sorvanti logo goes home; the practice name goes to the top of this site */
 .wordmark a { text-decoration: none; color: inherit; }
 .wordmark .home-link:hover .logotype { color: var(--orange); }
 .wordmark .practice:hover { color: var(--teal); }
+
+/* logo colors: the mark's forest-emerald-lime-amber sweep as a thin rule, emerald as the second accent */
+.site-head::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: var(--logo-sweep); opacity: .85; pointer-events: none; }
+.label::before { background: var(--logo-sweep); width: 26px; }
+.stance div:nth-child(even) { border-top-color: var(--emerald); }
+.cover li::before { color: var(--forest); font-weight: 600; }
 </style>
 </head>
 <body>
