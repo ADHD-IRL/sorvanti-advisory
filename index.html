@@ -395,6 +395,16 @@ h1, h2, h3 { letter-spacing: -0.015em; }
 .model .col.get { border-top-color: var(--emerald); }
 .progress i.on { background: var(--progress-sweep); }
 .cover li::before { color: var(--forest); font-weight: 600; }
+
+/* ---- Sorvanti tagline: this block is identical on every site ----
+   Adopt AI (steel) · Preserve judgment (amber) · Expand what people can do (emerald) */
+.tagline .t1, .tagline .t2, .tagline .t3 { -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+@media (min-width: 480px) { .tagline .t1, .tagline .t2 { white-space: nowrap; } }
+.tagline .t1 { background-image: linear-gradient(180deg, #FFFFFF 0%, #E4E8EC 38%, #9DA6AF 52%, #D5DADF 64%, #F4F6F8 100%); }
+.tagline .t2 { background-image: linear-gradient(180deg, #FFE9A8 0%, #F4C542 40%, #A87A08 58%, #EDBE45 100%); }
+.tagline .t3 { background-image: linear-gradient(180deg, #B6F0D2 0%, #5CC99A 45%, #1F9A6E 60%, #7FD8AE 100%); }
+footer .tagline { font-family: var(--display); font-weight: 600; font-size: 0.98rem; letter-spacing: -0.005em; margin: 0; }
+#stance .sec-head h2.tagline { max-width: 20ch; }
 </style>
 </head>
 <body>
@@ -672,7 +682,7 @@ h1, h2, h3 { letter-spacing: -0.015em; }
   <section class="block" id="stance">
     <div class="wrap">
       <div class="sec-head">
-        <div><span class="label">What guides our advice</span><h2>Our point of view</h2></div>
+        <div><span class="label">What guides our advice</span><h2 class="tagline"><span class="t1">Adopt AI.</span> <span class="t2">Preserve judgment.</span> <span class="t3">Expand what people can do.</span></h2></div>
         <p class="intro">The same convictions behind all of Sorvanti's work, applied at the planning stage, where they're cheapest to get right.</p>
       </div>
       <div class="stance">
@@ -729,7 +739,7 @@ h1, h2, h3 { letter-spacing: -0.015em; }
 <footer>
   <div class="wrap">
     <div class="wordmark"><a class="home-link" href="https://sorvantigroup.com/" aria-label="Sorvanti home" title="Sorvanti home"><span class="logo"><img src="assets/sorvanti-mark.png" alt="" width="38" height="38"><span class="logotype">Sorvanti</span></span></a><a class="practice" href="#top" aria-label="Sorvanti Advisory, back to top">Advisory</a></div>
-    <p>Strategic AI planning for leadership teams.</p>
+    <p class="tagline"><span class="t1">Adopt AI.</span> <span class="t2">Preserve judgment.</span> <span class="t3">Expand what people can do.</span></p>
     <p>© 2026 Sorvanti</p>
   </div>
 </footer>
