@@ -13,8 +13,6 @@
 /* Layout: the leadership briefing. Pages read like a board memo: a cover-sheet hero, numbered questions,
    a portfolio matrix as the one bold visual. Modern metallic: gunmetal ground, chrome headlines, brushed-aluminum cover plate, amber as the single accent. */
 :root {
-  --leaf: #8DB51A; --emerald: #1F9A6E; --forest: #0B4A33; --emerald-text: #5CC99A;
-  --logo-sweep: linear-gradient(90deg, #0B4A33 0%, #1F9A6E 30%, #8DB51A 62%, #F0B000 100%);
   --paper: #121518;
   --sheet: #1E2328;
   --raised: #262C32;
@@ -382,10 +380,20 @@ h1, h2, h3 { letter-spacing: -0.015em; }
 .wordmark .home-link:hover .logotype { color: var(--orange); }
 .wordmark .practice:hover { color: var(--teal); }
 
-/* logo colors: the mark's forest-emerald-lime-amber sweep as a thin rule, emerald as the second accent */
+/* ---- Sorvanti logo palette: this block is identical on every site ----
+   amber = actions and emphasis · emerald = second accent, alternating items, confirmations
+   forest = logo green on light plates · steel = neutral */
+:root {
+  --amber: #E0A512; --amber-hi: #F4C542; --amber-lo: #A87A08; --amber-text: #F2BC3C;
+  --emerald: #1F9A6E; --emerald-text: #5CC99A; --leaf: #8DB51A; --forest: #0B4A33;
+  --logo-sweep: linear-gradient(90deg, #0B4A33 0%, #1F9A6E 30%, #8DB51A 62%, #F0B000 100%);
+  --progress-sweep: linear-gradient(90deg, var(--emerald), var(--leaf) 55%, var(--amber-hi));
+}
 .site-head::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: var(--logo-sweep); opacity: .85; pointer-events: none; }
 .label::before { background: var(--logo-sweep); width: 26px; }
 .stance div:nth-child(even) { border-top-color: var(--emerald); }
+.model .col.get { border-top-color: var(--emerald); }
+.progress i.on { background: var(--progress-sweep); }
 .cover li::before { color: var(--forest); font-weight: 600; }
 </style>
 </head>
