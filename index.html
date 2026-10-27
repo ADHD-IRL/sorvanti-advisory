@@ -82,10 +82,10 @@ nav a.sister-link { color: var(--gold); }
 .head-cta { padding: 8px 14px; font-size: 0.88rem; }
 /* Desktop: the header runs wider than the page so the menu gets five equal columns,
    each label centered, spread evenly between the logo and the button */
-@media (min-width: 1201px) {
+@media (min-width: 1321px) {
   .site-head .wrap { max-width: 1400px; gap: 32px; }
   .site-head nav { flex: 1; }
-  .site-head nav ul { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0; text-align: center; }
+  .site-head nav ul { display: grid; grid-template-columns: repeat(6, auto); justify-content: space-evenly; gap: 0 12px; text-align: center; }
   .site-head nav a { white-space: nowrap; }
   .head-cta { min-width: 11rem; }
 }
@@ -96,7 +96,7 @@ nav a.sister-link { color: var(--gold); }
 .menu-btn[aria-expanded="true"] .bars { background: transparent; }
 .menu-btn[aria-expanded="true"] .bars::before { transform: translateY(6px) rotate(45deg); }
 .menu-btn[aria-expanded="true"] .bars::after { transform: translateY(-6px) rotate(-45deg); }
-@media (max-width: 1200px) {
+@media (max-width: 1320px) {
   .site-head .wrap { flex-wrap: wrap; row-gap: 0; }
   .menu-btn { display: grid; }
   .site-head nav { order: 3; flex-basis: 100%; display: grid; grid-template-rows: 0fr; transition: grid-template-rows .3s ease; }
@@ -423,6 +423,7 @@ footer .tagline { font-family: var(--display); font-weight: 600; font-size: 0.98
         <li><a href="#engagements">Engagements</a></li>
         <li><a href="#diagnostic">Where to start</a></li>
         <li><a class="sister-link" href="https://transformation.sorvantigroup.com/">Transformation ↗</a></li>
+        <li><a class="sister-link" href="https://countervail.sorvantigroup.com/">Countervail ↗</a></li>
       </ul>
     </nav>
   </div>
@@ -695,6 +696,10 @@ footer .tagline { font-family: var(--display); font-weight: 600; font-size: 0.98
         <p><b>Need hands-on help once the plan is set?</b> Sorvanti's transformation practice redesigns workflows, implements systems, and stays until the new way of working is normal.</p>
         <a class="btn ghost" href="https://transformation.sorvantigroup.com/">Visit Sorvanti Transformation</a>
       </div>
+      <div class="sister">
+        <p><b>Want to test the plan before it meets reality?</b> Countervail, Sorvanti's stress-testing service, runs AI-augmented tabletop exercises, red teaming, and resilience tests that find the gaps while they're still cheap to fix.</p>
+        <a class="btn ghost" href="https://countervail.sorvantigroup.com/">Visit Countervail</a>
+      </div>
     </div>
   </section>
 
@@ -752,7 +757,7 @@ footer .tagline { font-family: var(--display); font-weight: 600; font-size: 0.98
   menuBtn.addEventListener("click", function () { setMenu(!nav.classList.contains("open")); });
   nav.addEventListener("click", function (e) { if (e.target.closest("a")) setMenu(false); });
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") setMenu(false); });
-  window.matchMedia("(min-width: 1201px)").addEventListener("change", function (m) { if (m.matches) setMenu(false); });
+  window.matchMedia("(min-width: 1321px)").addEventListener("change", function (m) { if (m.matches) setMenu(false); });
 
   // Opportunity portfolio (illustrative). value and readiness on a 0–10 scale.
   var opps = [
